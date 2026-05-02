@@ -1,4 +1,4 @@
-# Bastion 
+# Bastion / EC2 / Auto Scaling 
 variable "var.my_ip" {
   description = "My public IP address in CIDR format"
   type        = string
@@ -11,7 +11,6 @@ variable "key_name" {
 }
 
 
-# EC2 / Auto Scaling 
 variable "instance_type" {
   description = "EC2 instance size for WordPress servers"
   type        = string
