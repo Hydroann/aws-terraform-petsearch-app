@@ -8,6 +8,23 @@ resource "aws_sns_topic_subscription" "email" {
 }
 
 
+locals {
+  topics = {
+    lost_pet = {
+      display_name = "PetSearch – Lost Pet Alert"
+      description  = "Triggered when a lost pet is reported nearby"
+    }
+    match_found = {
+      display_name = "PetSearch – Match Found"
+      description  = "Triggered when a potential match is found for a lost/found pet"
+    }
+    adoption_request = {
+      display_name = "PetSearch – Adoption Request"
+      description  = "Triggered when an adoption request is received"
+    }
+  }
+}
+
 # SNS Topics
 
 resource "aws_sns_topic" "alerts" {
