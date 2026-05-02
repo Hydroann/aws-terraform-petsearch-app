@@ -53,7 +53,7 @@ variable "db_username" {
 variable "db_password" {
   description = "MySQL admin password"
   type        = string
-  sensitive   = true   # Terraform will hide this value in logs and output
+  sensitive   = true  
 }
 
 
