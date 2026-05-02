@@ -30,7 +30,7 @@ locals {
 resource "aws_sns_topic" "alerts" {
   for_each = local.topics
 
-  name         = "${var.name_prefix}-${each.key}"
+  name         = "user-updates-topic-${each.key}"
   display_name = each.value.display_name
 
   # Enforce HTTPS delivery
@@ -55,7 +55,7 @@ resource "aws_sns_topic" "alerts" {
   })
 
   tags = {
-    Name        = "${var.name_prefix}-${each.key}"
+    Name        = "user-updates-topic-${each.key}"
     AlertType   = each.key
   }
 }
