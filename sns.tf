@@ -1,4 +1,4 @@
-# Email Subscriptions
+#topic_subscription_email
 resource "aws_sns_topic_subscription" "email" {
   for_each = local.topics
 
@@ -25,8 +25,7 @@ locals {
   }
 }
 
-# SNS Topics
-
+#sns_topic
 resource "aws_sns_topic" "alerts" {
   for_each = local.topics
 
@@ -61,3 +60,4 @@ resource "aws_sns_topic" "alerts" {
 }
 
 data "aws_caller_identity" "current" {}
+
