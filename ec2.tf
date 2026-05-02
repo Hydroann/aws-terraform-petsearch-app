@@ -1,14 +1,14 @@
-resource "aws_instance" "petsearch_wordpress_server" {
+resource "aws_instance" "petsearch_web_server" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
-  subnet_id                   = aws_subnet.public_subnet_petsearch_1
-  vpc_security_group_ids      = [aws_security_group.petsearch_sg]
+  subnet_id                   = [aws_subnet.public_subnet_petsearch_1]
+  vpc_security_group_ids      = [aws_security_group.petsearch_web_sg]
   associate_public_ip_address = true
   key_name                    = var.key_name
   user_data                   = file("scripts/userdata.sh")
 
   tags = {
-    Name = "petseach-wordpress-server"
+    Name = "petsearch-web-server"
   }
 }
 resource "aws_instance" "bastion-instance" {
@@ -16,7 +16,7 @@ resource "aws_instance" "bastion-instance" {
   instance_type               = var.instance_type
   associate_public_ip_address = true
   key_name                    = var.key_name
-  subnet_id                   = aws_subnet.public_subnet_petsearch_1
+  subnet_id                   = [aws_subnet.public_subnet_petsearch_1]
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
 
   tags = {
