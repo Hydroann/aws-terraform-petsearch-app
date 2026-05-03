@@ -1,7 +1,7 @@
 #Pet Images Bucket 
 resource "aws_s3_bucket" "pet_images" {
   # Account ID makes this unique globally
-  bucket = "petsearch-pet-images-${data.aws_caller_identity.current.account_id}"
+  bucket = "petsearch-pet-images-${var.current_account_id}"
 
   tags = {
     Name    = "petsearch-pet-images"

@@ -3,19 +3,9 @@ output "wordpress_url" {
   value       = "http://${aws_lb.main.dns_name}"
 }
 
-output "bastion_public_ip" {
-  description = "Public IP of the bastion host — SSH here first"
-  value       = aws_instance.bastion.public_ip
-}
-
 output "ssh_bastion_command" {
   description = "Ready-to-use command to SSH into the bastion host"
-  value       = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_instance.bastion.public_ip}"
-}
-
-output "ssh_jump_command" {
-  description = "Template for jumping from bastion to a private WordPress server"
-  value       = "ssh -J ec2-user@${aws_instance.bastion.public_ip} ec2-user@<private-ec2-ip> -i ~/.ssh/${var.key_name}.pem"
+  value       = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_subnet.public_petsearch_subnet_1}"
 }
 
 output "pet_images_bucket" {

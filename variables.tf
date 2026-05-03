@@ -62,3 +62,11 @@ variable "alert_email" {
   description = "Email address that receives PetSearch alerts"
   type        = string
 }
+
+# S3 Buckets
+
+variable "current_account_id" {
+  description = "Current AWS Account ID, used to create unique S3 bucket names"
+  type        = string
+  default     = "354275164276"
+}

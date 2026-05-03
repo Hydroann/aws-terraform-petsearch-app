@@ -15,7 +15,7 @@ resource "aws_subnet" "public_petsearch_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet-petsearch-1"
+    Name = "public-petsearch-subnet-1"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "public_petsearch_subnet_2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public-subnet-petsearch-2"
+    Name = "public-petsearch-subnet-2"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "private_petsearch_subnet_1" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "private-subnet-petsearch-1"
+    Name = "private-petsearch-subnet-1"
   }
 }
 
@@ -48,6 +48,6 @@ resource "aws_subnet" "private_petsearch_subnet_2" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "private-subnet-petsearch-2"
+    Name = "private-petsearch-subnet-2"
   }
 }

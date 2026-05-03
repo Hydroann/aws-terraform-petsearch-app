@@ -10,7 +10,7 @@ resource "aws_security_group" "petsearch_web_sg" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "petsearch_web_sg_allow_http_from_alb" {
-  security_group_id  = [aws_security_group.petsearch_alb_sg.id]
+  security_group_id  = [aws_security_group.alb_sg.id]
   cidr_ipv4 = "0.0.0.0/0"
   from_port         = 80
   ip_protocol       = "tcp"
@@ -18,7 +18,7 @@ resource "aws_vpc_security_group_ingress_rule" "petsearch_web_sg_allow_http_from
 }
 
 resource "aws_vpc_security_group_ingress_rule" "petsearch_web_sg_allow_ssh_from_bastion_host" {
-  security_group_id  = [aws_security_group.bastion_sg.id]
+  security_group_id  = aws_security_group.bastion_sg.id
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -47,7 +47,7 @@ resource "aws_vpc_security_group_ingress_rule" "bastion_sg_allow_shh_from_my_ip"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
-  cidr_ipv4       = [var.my_ip]
+  cidr_ipv4       = var.my_ip
 }
 
 resource "aws_vpc_security_group_egress_rule" "bastion_sg_allow_all_outbound" {
@@ -70,13 +70,13 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
-resource "aws_security_group_ingress_rule" "rds_sg_allow_mysql_from_webserver" {
+resource "aws_rds_security_group_ingress_rule" "rds_sg_allow_mysql_from_webserver" {
     security_group_id = [aws_security_group.petsearch_web_sg.id]
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
 }
-resource "aws_security_group_egress_rule" "rds_sg_allow_all_outbound" {
+resource "aws_rds_security_group_egress_rule" "rds_sg_allow_all_outbound" {
     security_group_id = aws_security_group.rds_sg.id
     cidr_ipv4 ="0.0.0.0/0"
     ip_protocol  = "-1"
@@ -90,14 +90,14 @@ resource "aws_security_group_egress_rule" "rds_sg_allow_all_outbound" {
 resource "aws_security_group" "alb_sg" {
   name        = "alb_sg"
   description = "Allow HTTP from the internet to the load balancer"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.petsearch.id
  
   tags = { 
     Name = "alb_sg" 
     }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "alb_sg_allow_http_from_internet" {
+resource "aws_alb_security_group_ingress_rule" "alb_sg_allow_http_from_internet" {
     security_group_id = aws_security_group.alb_sg.id
     description = "HTTP from internet"
     from_port   = 80
@@ -106,7 +106,7 @@ resource "aws_vpc_security_group_ingress_rule" "alb_sg_allow_http_from_internet"
     cidr_ipv4   = "0.0.0.0/0"
   }
 
-resource "aws_vpc_security_group_egress_rule" "alb_sg_allow_all_outbound" {
+resource "aws_alb_security_group_egress_rule" "alb_sg_allow_all_outbound" {
     security_group_id = aws_security_group.alb_sg.id
     cidr_ipv4         = "0.0.0.0/0"
     ip_protocol       = "-1" 

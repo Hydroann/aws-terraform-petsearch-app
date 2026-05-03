@@ -2,8 +2,8 @@ resource "aws_lb" "main" {
   name               = "petsearch-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb_sg_id]
-  subnets            = [public_petsearch_subnet_1, public_petsearch_subnet_2]
+  security_groups    = [aws_alb_security_group.alb_sg_id]
+  subnets            = [aws_subnet.public_petsearch_subnet_1, aws_subnet.public_petsearch_subnet_2]
 
   
   access_logs {
