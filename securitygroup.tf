@@ -99,7 +99,7 @@ resource "aws_security_group" "alb_sg" {
     }
 }
 
-resource "aws_vpcsecurity_group_ingress_rule" "alb_sg_allow_http_from_internet" {
+resource "aws_vpc_security_group_ingress_rule" "alb_sg_allow_http_from_internet" {
     security_group_id = aws_security_group.alb_sg.id
     description = "HTTP from internet"
     from_port   = 80

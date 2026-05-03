@@ -28,7 +28,7 @@ resource "aws_autoscaling_group" "petsearch-webserver" {
   }
 
   # The ASG depends on the DB and S3 being ready before starting
-  depends_on = [aws_db_instance.main, aws_s3_bucket.pet_images]
+  depends_on = [aws_db_instance.rds_instance, aws_s3_bucket.pet_images]
 }
 
 
