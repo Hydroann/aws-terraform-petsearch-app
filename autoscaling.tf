@@ -93,7 +93,7 @@ locals {
 
 resource "aws_launch_template" "webserver" {
   name_prefix   = "webserver-lt-"
-  image_id      = data.aws_ami.amazon_linux.id
+  image_id      = var.ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
 
