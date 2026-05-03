@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_low" {
 
 #LAUNCH TEMPLATE AND WORDPRESS INSTALL SCRIPT
 locals {
-  userdata = base64encode(templatefile("scripts/userdata.sh"), {
+  userdata = base64encode(templatefile("scripts/userdata.sh", {
     db_username    = var.db_username
     db_password    = var.db_password
     s3_bucket_name = aws_s3_bucket.pet_images.bucket
