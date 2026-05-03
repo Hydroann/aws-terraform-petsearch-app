@@ -6,7 +6,6 @@ echo "=== PetSearch WordPress Install Starting ==="
 
 DB_USER="${db_username}"
 DB_PASS="${db_password}"
-#S3_BUCKET="${s3_bucket_name}"
 
 
 echo "=== Installing packages ==="
