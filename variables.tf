@@ -12,25 +12,25 @@ variable "key_name" {
 
 
 variable "instance_type" {
-  description = "EC2 instance size for WordPress servers"
+  description = "EC2 instance size for Webservers"
   type        = string
   default     = "t3.small"
 }
 
 variable "asg_min_size" {
-  description = "Minimum number of WordPress servers. Always at least this many will be running."
+  description = "Minimum number of Webservers. Always at least this many will be running."
   type        = number
   default     = 1
 }
 
 variable "asg_max_size" {
-  description = "Maximum number of WordPress servers"
+  description = "Maximum number of Webservers "
   type        = number
   default     = 3
 }
 
 variable "asg_desired_capacity" {
-  description = "How many WordPress servers to run under normal conditions"
+  description = "How many Webservers to run under normal conditions"
   type        = number
   default     = 2
 }
