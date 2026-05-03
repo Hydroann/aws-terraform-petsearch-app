@@ -6,7 +6,7 @@ resource "aws_route_table" "public-petsearch_rtb" {
         gateway_id = aws_internet_gateway.petsearch-igw.id
     }
     tags = {
-        Name = "public-petsearch-route-table"
+        Name = "public-petsearch-rtb"
     }
 }       
 resource "aws_route_table_association" "public-petsearch-rtb-association-1" {
@@ -25,7 +25,7 @@ resource "aws_route_table" "private-petsearch-rtb" {
     vpc_id = aws_vpc.petsearch.id
     
     tags = {
-        Name = "private-petsearch-route-table"
+        Name = "private-petsearch-rtb"
     }
 }       
 resource "aws_route_table_association" "private-petsearch-rtb-association-1" {
