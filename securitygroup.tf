@@ -47,7 +47,7 @@ resource "aws_vpc_security_group_ingress_rule" "bastion_sg_allow_shh_from_my_ip"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
-  cidr_ipv4.         = [var.my_ip]
+  cidr_ipv4.        = [var.my_ip]
 }
 
 resource "aws_vpc_security_group_egress_rule" "bastion_sg_allow_all_outbound" {

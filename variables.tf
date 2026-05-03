@@ -1,5 +1,5 @@
 # Bastion / EC2 / Auto Scaling 
-variable "var.my_ip" {
+variable "my_ip" {
   description = "My public IP address in CIDR format"
   type        = string
 }
