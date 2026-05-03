@@ -37,11 +37,6 @@ variable "asg_desired_capacity" {
 
 
 # Database 
-variable "db_name" {
-  description = "Name of the MySQL database WordPress will use"
-  type        = string
-  default     = "petsearch_db"
-}
 
 variable "db_username" {
   description = "MySQL admin username"

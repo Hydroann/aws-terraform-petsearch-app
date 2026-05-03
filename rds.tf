@@ -1,8 +1,12 @@
 resource "aws_db_subnet_group" "rds_subnet_group" {
   name       = "rds-subnet-group"
-  subnet_ids = [private_petsearch_subnet_1]
-}
+  description = "Private subnets for RDS instance"
+  subnet_ids = [private_petsearch_subnet_1, private_petsearch_subnet_2]
 
+  tags = {
+    Name = "rds-subnet-group"
+  }
+}
 resource "aws_db_instance" "rds_instance" {
   identifier              = "petsearch-rds-instance"
   engine                  = "mysql"
@@ -15,5 +19,9 @@ resource "aws_db_instance" "rds_instance" {
   multi_az                = true
   db_subnet_group_name    = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.rds_sg.id]
+
+  tags = {
+    Name = "petsearch-rds-instance"
+  }
 }
 
