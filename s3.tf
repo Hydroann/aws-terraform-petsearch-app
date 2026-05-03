@@ -39,13 +39,13 @@ resource "aws_s3_bucket_cors_configuration" "pet_images" {
 
 
 
-# Documents Bucket 
+# Documents and Logs Bucket 
 resource "aws_s3_bucket" "documents" {
-  bucket = "petsearch-documents-${data.aws_caller_identity.current.account_id}"
+  bucket = "petsearch-documents-${var.current_account_id}"
 
   tags = {
     Name    = "petsearch-documents"
-    Purpose = "Adoption papers, vet records, and other uploaded documents"
+    Purpose = "Adoption papers, vet records, uploaded documents and log files"
   }
 }
 

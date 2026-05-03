@@ -2,13 +2,13 @@ resource "aws_lb" "main" {
   name               = "petsearch-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_alb_security_group.alb_sg_id]
+  security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.public_petsearch_subnet_1, aws_subnet.public_petsearch_subnet_2]
 
   
   access_logs {
-    bucket  = aws_s3_bucket.alb_logs.bucket
-    prefix  = "alb-logs"
+    bucket  = aws_s3_bucket.documents
+    prefix  = "documents"
     enabled = true
   }
 

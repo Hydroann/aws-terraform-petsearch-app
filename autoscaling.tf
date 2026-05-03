@@ -88,8 +88,9 @@ locals {
     db_username    = var.db_username
     db_password    = var.db_password
     s3_bucket_name = aws_s3_bucket.pet_images.bucket
-  })
+  }))
 }
+
 resource "aws_launch_template" "webserver" {
   name_prefix   = "webserver-lt-"
   image_id      = data.aws_ami.amazon_linux.id

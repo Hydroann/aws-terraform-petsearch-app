@@ -33,8 +33,3 @@ output "sns_adoption_request_arn" {
   value       = aws_sns_topic.adoption_request.arn
 }
 
-output "rds_endpoint" {
-  description = "Database connection address (used internally by WordPress)"
-  value       = aws_db_instance.main.endpoint
-  sensitive   = true
-}

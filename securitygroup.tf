@@ -10,7 +10,7 @@ resource "aws_security_group" "petsearch_web_sg" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "petsearch_web_sg_allow_http_from_alb" {
-  security_group_id  = [aws_security_group.alb_sg.id]
+  security_group_id  = aws_security_group.alb_sg.id
   cidr_ipv4 = "0.0.0.0/0"
   from_port         = 80
   ip_protocol       = "tcp"
@@ -70,13 +70,13 @@ resource "aws_security_group" "rds_sg" {
   }
 }
 
-resource "aws_rds_security_group_ingress_rule" "rds_sg_allow_mysql_from_webserver" {
-    security_group_id = [aws_security_group.petsearch_web_sg.id]
+resource "aws_security_group_ingress_rule" "rds_sg_allow_mysql_from_webserver" {
+    security_group_id = aws_security_group.petsearch_web_sg.id
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
 }
-resource "aws_rds_security_group_egress_rule" "rds_sg_allow_all_outbound" {
+resource "aws_security_group_egress_rule" "rds_sg_allow_all_outbound" {
     security_group_id = aws_security_group.rds_sg.id
     cidr_ipv4 ="0.0.0.0/0"
     ip_protocol  = "-1"
@@ -97,7 +97,7 @@ resource "aws_security_group" "alb_sg" {
     }
 }
 
-resource "aws_alb_security_group_ingress_rule" "alb_sg_allow_http_from_internet" {
+resource "aws_security_group_ingress_rule" "alb_sg_allow_http_from_internet" {
     security_group_id = aws_security_group.alb_sg.id
     description = "HTTP from internet"
     from_port   = 80
@@ -106,7 +106,7 @@ resource "aws_alb_security_group_ingress_rule" "alb_sg_allow_http_from_internet"
     cidr_ipv4   = "0.0.0.0/0"
   }
 
-resource "aws_alb_security_group_egress_rule" "alb_sg_allow_all_outbound" {
+resource "aws_security_group_egress_rule" "alb_sg_allow_all_outbound" {
     security_group_id = aws_security_group.alb_sg.id
     cidr_ipv4         = "0.0.0.0/0"
     ip_protocol       = "-1" 
