@@ -4,11 +4,9 @@ exec > /var/log/petsearch-install.log 2>&1
 
 echo "=== PetSearch WordPress Install Starting ==="
 
-DB_HOST="${db_host}"
 DB_USER="${db_username}"
 DB_PASS="${db_password}"
 S3_BUCKET="${s3_bucket_name}"
-DB_HOSTNAME=$(echo "$DB_HOST" | cut -d: -f1)
 
 
 echo "=== Installing packages ==="
@@ -41,7 +39,7 @@ cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 sed -i "s/database_name_here/$DB_NAME/"  /var/www/html/wp-config.php
 sed -i "s/username_here/$DB_USER/"       /var/www/html/wp-config.php
 sed -i "s/password_here/$DB_PASS/"       /var/www/html/wp-config.php
-sed -i "s/localhost/$DB_HOSTNAME/"       /var/www/html/wp-config.php
+
 
 cat >> /var/www/html/wp-config.php << EOF
 
@@ -69,7 +67,7 @@ mv wp-cli.phar /usr/local/bin/wp
 
 echo "=== Waiting for database ==="
 for i in {1..20}; do
-  if mysql -h "$DB_HOSTNAME" -u "$DB_USER" -p"$DB_PASS" -e "SELECT 1;" &>/dev/null; then
+  if mysql -u "$DB_USER" -p"$DB_PASS" -e "SELECT 1;" &>/dev/null; then
     echo "Database is ready!"
     break
   fi
