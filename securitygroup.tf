@@ -10,19 +10,19 @@ resource "aws_security_group" "petsearch-web-sg" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "petsearch-web-sg-allow-http-from-alb" {
-  security_group_id  = aws_security_group.alb-sg.id
-  cidr_ipv4 = "0.0.0.0/0"
+  security_group_id            = aws_security_group.petsearch-web-sg.id
+  referenced_security_group_id = aws_security_group.alb-sg.id
   from_port         = 80
   ip_protocol       = "tcp"
   to_port           = 80
 }
 
 resource "aws_vpc_security_group_ingress_rule" "petsearch-web-sg-allow-ssh-from-bastion-host" {
-  security_group_id  = aws_security_group.bastion-sg.id
+  security_group_id            = aws_security_group.petsearch-web-sg.id
+  referenced_security_group_id  = aws_security_group.bastion-sg.id
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
-  cidr_ipv4      = var.my_ip
 }
 
 resource "aws_vpc_security_group_egress_rule" "petsearch-web-sg-allow-all-outbound" {

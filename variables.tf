@@ -17,10 +17,10 @@ variable "instance_type" {
   default     = "t3.small"
 }
 
-variable "ami_id" {
+variable "ami" {
   description = "AMI ID for EC2 instances"
   type        = string
-  default     = "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-2023.11.20260427.1-kernel-6.1-x86_64"
+  sensitive   = true  
 }
 
 variable "asg_min_size" {
