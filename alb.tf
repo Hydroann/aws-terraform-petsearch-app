@@ -6,11 +6,11 @@ resource "aws_lb" "main" {
   subnets            = [aws_subnet.public-petsearch-subnet-1.id, aws_subnet.public-petsearch-subnet-2.id]
 
   
-  access_logs {
-    bucket  = aws_s3_bucket.documents.id
-    prefix  = "documents"
-    enabled = true
-  }
+ # access_logs {
+ #   bucket  = aws_s3_bucket.documents.id
+ #   prefix  = "documents"
+ #   enabled = true
+  # }
 
   tags = { Name = "petsearch-alb" }
 }

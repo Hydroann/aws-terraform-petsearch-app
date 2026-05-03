@@ -8,15 +8,15 @@ output "ssh_bastion_command" {
   value       = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_subnet.public-petsearch-subnet-1.id}"
 }
 
-output "pet_images_bucket" {
-  description = "S3 bucket where pet photos are stored"
-  value       = aws_s3_bucket.pet_images.bucket
-}
+#output "pet_images_bucket" {
+#description = "S3 bucket where pet photos are stored"
+# value       = aws_s3_bucket.pet_images.bucket
+#}
 
-output "documents_bucket" {
-  description = "S3 bucket where uploaded documents are stored"
-  value       = aws_s3_bucket.documents.bucket
-}
+#output "documents_bucket" {
+ # description = "S3 bucket where uploaded documents are stored"
+  #value       = aws_s3_bucket.documents.bucket
+#}
 
 output "sns_lost_pet_arn" {
   description = "SNS topic ARN for lost pet alerts — publish to this from WordPress"

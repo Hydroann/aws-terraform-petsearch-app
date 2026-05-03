@@ -6,7 +6,7 @@ echo "=== PetSearch WordPress Install Starting ==="
 
 DB_USER="${db_username}"
 DB_PASS="${db_password}"
-S3_BUCKET="${s3_bucket_name}"
+#S3_BUCKET="${s3_bucket_name}"
 
 
 echo "=== Installing packages ==="
@@ -43,10 +43,6 @@ sed -i "s/password_here/$DB_PASS/"       /var/www/html/wp-config.php
 
 cat >> /var/www/html/wp-config.php << EOF
 
-/** PetSearch S3 Storage Settings */
-define('PETSEARCH_S3_BUCKET', '$S3_BUCKET');
-define('PETSEARCH_AWS_REGION', '$AWS_REGION');
-EOF
 
 
 echo "=== Setting file permissions ==="
