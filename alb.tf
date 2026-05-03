@@ -3,11 +3,11 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-sg.id]
-  subnets            = [aws_subnet.public-petsearch-subnet-1, aws_subnet.public-petsearch-subnet-2]
+  subnets            = [aws_subnet.public-petsearch-subnet-1.id, aws_subnet.public-petsearch-subnet-2.id]
 
   
   access_logs {
-    bucket  = aws_s3_bucket.documents
+    bucket  = aws_s3_bucket.documents.id
     prefix  = "documents"
     enabled = true
   }

@@ -11,7 +11,7 @@ resource "aws_eip" "nat" {
 
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
-  subnet_id     = aws_subnet.public-petsearch-subnet-1 # NAT Gateway lives in a public subnet
+  subnet_id     = aws_subnet.public-petsearch-subnet-1.id # NAT Gateway lives in a public subnet
 
   depends_on = [aws_internet_gateway.petsearch-igw]
 
