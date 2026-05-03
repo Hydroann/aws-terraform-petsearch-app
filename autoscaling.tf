@@ -81,3 +81,44 @@ resource "aws_cloudwatch_metric_alarm" "cpu_low" {
     AutoScalingGroupName = aws_autoscaling_group.petsearch-webserver.name
   }
 }
+
+#LAUNCH TEMPLATE AND WORDPRESS INSTALL SCRIPT
+locals {
+  userdata = base64encode(templatefile("scripts/userdata.sh"), {
+    db_username    = var.db_username
+    db_password    = var.db_password
+    s3_bucket_name = aws_s3_bucket.pet_images.bucket
+  })
+}
+resource "aws_launch_template" "webserver" {
+  name_prefix   = "webserver-lt-"
+  image_id      = data.aws_ami.amazon_linux.id
+  instance_type = var.instance_type
+  key_name      = var.key_name
+
+  vpc_security_group_ids = [aws_security_group.petsearch_web_sg.id]
+  # The install script that runs at first boot
+  user_data = local.userdata
+
+  # Root disk: 20 GB SSD
+  block_device_mappings {
+    device_name = "/dev/xvda"
+    ebs {
+      volume_size           = 20
+      volume_type           = "gp3"
+      delete_on_termination = true
+    }
+  }
+
+  # Tag each instance created from this template
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name        = "petsearch-webserver"
+    }
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

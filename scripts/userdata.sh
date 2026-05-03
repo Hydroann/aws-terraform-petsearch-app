@@ -5,11 +5,9 @@ exec > /var/log/petsearch-install.log 2>&1
 echo "=== PetSearch WordPress Install Starting ==="
 
 DB_HOST="${db_host}"
-DB_NAME="${db_name}"
 DB_USER="${db_username}"
 DB_PASS="${db_password}"
 S3_BUCKET="${s3_bucket_name}"
-AWS_REGION="${aws_region}"
 DB_HOSTNAME=$(echo "$DB_HOST" | cut -d: -f1)
 
 
