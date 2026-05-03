@@ -10,7 +10,7 @@ resource "aws_autoscaling_group" "petsearch-webserver" {
   vpc_zone_identifier = [aws_subnet.private-petsearch-subnet-1.id, aws_subnet.private-petsearch-subnet-2.id]
 
   # Register instances with the ALB so it sends them traffic
-  target_group_arns = [aws_lb_target_group.webserver]
+  target_group_arns = [aws_lb_target_group.webserver.arn]
 
   # Use ALB health checks — if Webserver is broken, replace the instance
   health_check_type         = "ELB"
