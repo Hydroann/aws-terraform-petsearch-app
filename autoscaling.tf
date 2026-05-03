@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "petsearch-webserver" {
   desired_capacity = var.asg_desired_capacity # Start with this many
 
   # Deploy across both private subnets (spreads across AZ-1 and AZ-2)
-  vpc_zone_identifier = [aws_subnet.private_petsearch_subnet_1.id, aws_subnet.private_petsearch_subnet_2.id]
+  vpc_zone_identifier = [aws_subnet.private-petsearch-subnet-1.id, aws_subnet.private-petsearch-subnet-2.id]
 
   # Register instances with the ALB so it sends them traffic
   target_group_arns = [aws_lb_target_group.webserver]
