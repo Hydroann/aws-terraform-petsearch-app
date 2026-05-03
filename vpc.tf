@@ -8,7 +8,7 @@ resource "aws_vpc" "petsearch" {
   }
 }
 
-resource "aws_subnet" "public_petsearch_subnet_1" {
+resource "aws_subnet" "public-petsearch-subnet-1" {
   vpc_id                  = aws_vpc.petsearch.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "us-west-2a"
@@ -19,7 +19,7 @@ resource "aws_subnet" "public_petsearch_subnet_1" {
   }
 }
 
-resource "aws_subnet" "public_petsearch_subnet_2" {
+resource "aws_subnet" "public-petsearch-subnet-2" {
   vpc_id                  = aws_vpc.petsearch.id
   cidr_block              = "10.0.3.0/24"
   availability_zone       = "us-west-2b"
@@ -30,7 +30,7 @@ resource "aws_subnet" "public_petsearch_subnet_2" {
   }
 }
 
-resource "aws_subnet" "private_petsearch_subnet_1" {
+resource "aws_subnet" "private-petsearch-subnet-1" {
   vpc_id                  = aws_vpc.petsearch.id
   cidr_block              = "10.0.2.0/24"
   availability_zone       = "us-west-2c"
@@ -41,7 +41,7 @@ resource "aws_subnet" "private_petsearch_subnet_1" {
   }
 }
 
-resource "aws_subnet" "private_petsearch_subnet_2" {
+resource "aws_subnet" "private-petsearch-subnet-2" {
   vpc_id                  = aws_vpc.petsearch.id
   cidr_block              = "10.0.4.0/24"
   availability_zone       = "us-west-2d"

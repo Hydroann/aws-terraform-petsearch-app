@@ -5,7 +5,7 @@ output "wordpress_url" {
 
 output "ssh_bastion_command" {
   description = "Ready-to-use command to SSH into the bastion host"
-  value       = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_subnet.public_petsearch_subnet_1}"
+  value       = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_subnet.public-petsearch-subnet-1}"
 }
 
 output "pet_images_bucket" {

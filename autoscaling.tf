@@ -28,7 +28,7 @@ resource "aws_autoscaling_group" "petsearch-webserver" {
   }
 
   # The ASG depends on the DB and S3 being ready before starting
-  depends_on = [aws_db_instance.rds_instance, aws_s3_bucket.pet_images]
+  depends_on = [aws_db_instance.rds-instance, aws_s3_bucket.pet_images]
 }
 
 
@@ -97,7 +97,7 @@ resource "aws_launch_template" "webserver" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-  vpc_security_group_ids = [aws_security_group.petsearch_web_sg.id]
+  vpc_security_group_ids = [aws_security_group.petsearch-web-sg.id]
   # The install script that runs at first boot
   user_data = local.userdata
 
