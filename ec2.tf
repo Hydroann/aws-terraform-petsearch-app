@@ -1,4 +1,4 @@
-resource "aws_instance" "petsearch_web_server" {
+resource "aws_instance" "petsearch_webserver" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
   subnet_id                   = [aws_subnet.public_subnet_petsearch_1]
@@ -8,7 +8,7 @@ resource "aws_instance" "petsearch_web_server" {
   user_data                   = file("scripts/userdata.sh")
 
   tags = {
-    Name = "petsearch-web-server"
+    Name = "petsearch-webserver"
   }
 }
 resource "aws_instance" "bastion-instance" {
