@@ -12,7 +12,7 @@ resource "aws_instance" "petsearch_webserver" {
   }
 }
 resource "aws_instance" "bastion-instance" {
-  ami                         = "resolve:ssm:/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+  ami                         = var.ami_id
   instance_type               = var.instance_type
   associate_public_ip_address = true
   key_name                    = var.key_name

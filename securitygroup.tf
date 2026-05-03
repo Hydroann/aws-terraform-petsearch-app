@@ -31,10 +31,6 @@ resource "aws_vpc_security_group_egress_rule" "petsearch_web_sg_allow_all_outbou
 }
 
 
-
-
-
-
 #bastion_sg
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion_sg"
@@ -51,7 +47,7 @@ resource "aws_vpc_security_group_ingress_rule" "bastion_sg_allow_shh_from_my_ip"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
-  cidr_ipv4 =   [var.my_ip]
+  cidr_ipv4.         = [var.my_ip]
 }
 
 resource "aws_vpc_security_group_egress_rule" "bastion_sg_allow_all_outbound" {
@@ -59,7 +55,7 @@ resource "aws_vpc_security_group_egress_rule" "bastion_sg_allow_all_outbound" {
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" 
 
-
+}
 
 
 
